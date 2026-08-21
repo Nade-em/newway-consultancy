@@ -21,7 +21,7 @@ export const siteConfig = {
     },
 
     mapsUrl:
-      "https://www.google.com/maps/place/New+Way+Consultancy+%26+Placement/@24.7999031,93.9421171,17z",
+      "https://maps.app.goo.gl/4kjJrhRSPEdmpBDo9?g_st=aw",
 
     phone: {
       director: "9402938695",

@@ -1,13 +1,12 @@
-
 import { motion } from "framer-motion";
 import {
   ArrowRight,
+  BriefcaseBusiness,
+  CheckCircle2,
   Compass,
   GraduationCap,
-  BriefcaseBusiness,
-  FileText,
   Headphones,
-  CheckCircle2,
+  Users,
 } from "lucide-react";
 
 const services = [
@@ -15,335 +14,275 @@ const services = [
     id: "career-guidance",
     title: "Career Guidance",
     description:
-      "Helping individuals understand their strengths, explore career options and make confident decisions about their professional future.",
+      "Helping individuals understand their strengths, explore career options and make confident decisions about their future.",
     icon: Compass,
-    iconClass: "bg-blue-100 text-[#123A6D]",
   },
   {
-    id: "educational-guidance",
-    title: "Educational Guidance",
+    id: "career-development",
+    title: "Career Development",
     description:
-      "Supporting students with course selection, admissions, educational pathways and decisions that align with their long-term goals.",
-    icon: GraduationCap,
-    iconClass: "bg-yellow-100 text-yellow-600",
-  },
-  {
-    id: "job-search-assistance",
-    title: "Job Search Assistance",
-    description:
-      "Guiding job seekers through opportunity discovery, applications and practical strategies for navigating the employment market.",
+      "Building professional skills, improving employability and preparing candidates for meaningful career opportunities.",
     icon: BriefcaseBusiness,
-    iconClass: "bg-green-100 text-green-600",
-  },
-  {
-    id: "career-readiness",
-    title: "Career Readiness",
-    description:
-      "Building practical skills for the workplace through resume support, interview preparation and professional readiness guidance.",
-    icon: FileText,
-    iconClass: "bg-purple-100 text-purple-600",
-  },
-  {
-    id: "medical-education-guidance",
-  title: "MBBS in India & Abroad",
-  description:
-    "Guidance for students seeking MBBS opportunities in India and abroad, including university selection, admission pathways, eligibility and application support.",
-  icon: GraduationCap,
-  iconClass: "bg-red-100 text-red-600",
-  },
-  {
-    id: "professional-assistance",
-    title: "Professional Assistance",
-    description:
-      "Offering responsive support throughout the recruitment, education and career development journey.",
-    icon: Headphones,
-    iconClass: "bg-cyan-100 text-cyan-600",
-  },
-];
-
-const serviceDetails = [
-  {
-    id: "career-guidance",
-    title: "Career Guidance",
-    subtitle: "Helping individuals find clarity and direction in their career journey.",
-    description:
-      "Career decisions can be challenging. Career guidance provides practical support to help individuals understand their strengths, explore suitable opportunities and make informed decisions about their future.",
-    points: [
-      "Career direction and planning",
-      "Career option exploration",
-      "Goal setting and development planning",
-      "Opportunity awareness",
-      "Career transition guidance",
-      "Long-term career planning",
-    ],
   },
   {
     id: "educational-guidance",
     title: "Educational Guidance",
-    subtitle: "Helping students make informed choices about education and their future.",
     description:
-      "Choosing the right educational pathway is an important decision. Educational guidance helps students understand their options and make choices based on their interests, abilities and future aspirations.",
-    points: [
-      "Course and programme guidance",
-      "Educational pathway planning",
-      "Admission guidance",
-      "Course selection support",
-      "Academic decision support",
-      "Long-term education planning",
-    ],
+      "Support for educational planning, admissions and learning opportunities aligned with your goals.",
+    icon: GraduationCap,
   },
   {
-    id: "job-search-assistance",
-    title: "Job Search Assistance",
-    subtitle: "Making the journey from job search to opportunity more focused.",
+    id: "placement-services",
+    title: "Placement Services",
     description:
-      "Job searching can be overwhelming. Practical assistance helps individuals discover relevant opportunities, understand application processes and approach their job search with greater confidence.",
-    points: [
-      "Job opportunity guidance",
-      "Job search strategy",
-      "Application guidance",
-      "Opportunity identification",
-      "Employment market awareness",
-      "Job search planning",
-    ],
+      "Connecting candidates with suitable employment opportunities and supporting them throughout the placement journey.",
+    icon: Users,
   },
   {
-    id: "career-readiness",
-    title: "Career Readiness",
-    subtitle: "Preparing individuals to approach professional opportunities with confidence.",
+    id: "professional-support",
+    title: "Professional Support",
     description:
-      "Career readiness focuses on the practical skills and preparation required to present yourself effectively and navigate professional opportunities.",
-    points: [
-      "Resume and CV guidance",
-      "Interview preparation",
-      "Professional communication",
-      "Application support",
-      "Workplace readiness",
-      "Professional presentation",
-    ],
-  },
-  {
-    id: "medical-education-guidance",
-  title: "MBBS in India & Abroad",
-  subtitle: "Guiding students towards the right medical education opportunities.",
-  description:
-    "Dedicated guidance for students aspiring to pursue MBBS in India or abroad, with support in understanding universities, eligibility, admission pathways and important decisions throughout the application process.",
-  points: [
-    "MBBS admission guidance in India",
-    "MBBS admission guidance abroad",
-    "University and college selection",
-    "Eligibility and admission guidance",
-    "NEET-related guidance",
-    "Application and documentation support",
-    ],
-  },
-  {
-    id: "professional-guidance",
-    title: "Professional Guidance",
-    subtitle: "Supporting individuals through important career and professional decisions.",
-    description:
-      "Professional guidance provides continued support as individuals navigate career transitions, development opportunities and changing professional goals.",
-    points: [
-      "Professional consultation",
-      "Career transition guidance",
-      "Development planning",
-      "Opportunity guidance",
-      "Professional decision support",
-      "Ongoing career guidance",
-    ],
+      "Practical guidance, counselling and support to help individuals move confidently toward their professional goals.",
+    icon: Headphones,
   },
 ];
 
 export default function Services() {
   return (
-    <>
     <section
       id="services"
-      className="relative overflow-hidden bg-white py-24"
+      className="relative overflow-hidden bg-[#123A6D] py-20 sm:py-24"
     >
-      {/* Background Grid */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.035]"
-        style={{
-          backgroundImage: `
-            linear-gradient(#123A6D 1px, transparent 1px),
-            linear-gradient(90deg, #123A6D 1px, transparent 1px)
-          `,
-          backgroundSize: "70px 70px",
-        }}
-      />
+      {/* Background grid */}
+      <div className="pointer-events-none absolute inset-0 opacity-20">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px)",
+            backgroundSize: "54px 54px",
+          }}
+        />
+      </div>
 
-      <div className="relative mx-auto max-w-7xl px-6 sm:px-8">
+      {/* Decorative circles */}
+      <div className="pointer-events-none absolute -right-32 top-20 h-72 w-72 rounded-full border border-yellow-400/20" />
+      <div className="pointer-events-none absolute -left-40 bottom-20 h-80 w-80 rounded-full border border-yellow-400/10" />
 
-        {/* SECTION HEADER */}
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Section heading */}
         <motion.div
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mx-auto max-w-3xl text-center"
+          className="mx-auto mb-12 max-w-3xl text-center"
         >
-          <span className="font-semibold uppercase tracking-[4px] text-yellow-500">
+          <p className="mb-4 text-sm font-bold uppercase tracking-[0.25em] text-yellow-400 sm:text-base">
             Our Services
-          </span>
+          </p>
 
-          <h2 className="mt-4 text-4xl font-black leading-tight text-[#123A6D] sm:text-5xl">
-            Professional Solutions.
-            <span className="block text-yellow-500">
-              Meaningful Opportunities.
-            </span>
+          <h2 className="text-4xl font-black leading-tight text-white sm:text-5xl lg:text-6xl">
+            Choose Your{" "}
+            <span className="text-yellow-400">Path.</span>
           </h2>
 
-          <p className="mt-6 text-lg leading-8 text-slate-600">
-            We provide recruitment, HR, educational and career-focused
-            services designed to connect people with opportunities and
-            help organizations build stronger teams.
+          <div className="mx-auto mt-6 h-1.5 w-16 rounded-full bg-yellow-400" />
+
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-blue-100 sm:text-lg sm:leading-8">
+            Discover the right support for your education, career and
+            professional journey. We help you move forward with clarity and
+            confidence.
           </p>
         </motion.div>
 
-        {/* SERVICE CARDS */}
-        <div className="mt-16 grid gap-7 md:grid-cols-2 lg:grid-cols-3">
-          {services.map((service, index) => {
-            const Icon = service.icon;
-
-            return (
-              <motion.article
-                key={service.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.15 }}
-                transition={{
-                  duration: 0.55,
-                  delay: index * 0.07,
-                }}
-                whileHover={{ y: -7 }}
-                className="group flex min-h-[360px] flex-col rounded-[28px] border border-slate-200 bg-white p-8 shadow-lg transition-shadow duration-300 hover:shadow-2xl"
-              >
-                {/* Icon */}
-                <div
-                  className={`flex h-16 w-16 items-center justify-center rounded-2xl ${service.iconClass}`}
+        {/* Main services panel */}
+        <motion.div
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="relative mx-auto max-w-5xl overflow-hidden rounded-[2rem] border border-white/20 bg-[#0E376B]/90 shadow-2xl backdrop-blur-sm"
+        >
+          {/* Decorative area
+              IMPORTANT:
+              This is kept separate from the text content so
+              the wave can never overlap the paragraph.
+          */}
+          <div className="pointer-events-none relative h-32 overflow-hidden sm:h-40">
+            {/* Violet wave */}
+            <svg
+              viewBox="0 0 1200 220"
+              preserveAspectRatio="none"
+              className="absolute bottom-0 left-0 h-full w-full"
+              aria-hidden="true"
+            >
+              <defs>
+                <linearGradient
+                  id="serviceWaveGradient"
+                  x1="0%"
+                  y1="0%"
+                  x2="100%"
+                  y2="0%"
                 >
-                  <Icon size={29} strokeWidth={1.9} />
-                </div>
+                  <stop offset="0%" stopColor="#A66CFF" />
+                  <stop offset="50%" stopColor="#C678FF" />
+                  <stop offset="100%" stopColor="#8C4DFF" />
+                </linearGradient>
+              </defs>
 
-                {/* Content */}
-                <h3 className="mt-8 text-2xl font-bold text-[#123A6D]">
-                  {service.title}
-                </h3>
+              <path
+                d="M0 135 C170 205 290 45 470 85 C650 125 730 215 900 130 C1030 65 1110 70 1200 125 L1200 220 L0 220 Z"
+                fill="url(#serviceWaveGradient)"
+                opacity="0.9"
+              />
 
-                <p className="mt-5 flex-1 text-base leading-7 text-slate-600">
-                  {service.description}
-                </p>
-
-                {/* Working Learn More Link */}
-                <a
-                  href={service.id === "educational-guidance"
-      ? "#education-programs"
-      : `#${service.id}`}
-                  className="mt-7 inline-flex w-fit items-center gap-2 font-semibold text-[#123A6D] transition-colors duration-300 hover:text-yellow-600"
-                >
-                  Learn More
-
-                  <ArrowRight
-                    size={19}
-                    className="transition-transform duration-300 group-hover:translate-x-1"
-                  />
-                </a>
-              </motion.article>
-            );
-          })}
-        </div>
-
-        {/* DETAILED SERVICES */}
-        <div className="mt-28">
-          <div className="mb-14 text-center">
-            <span className="font-semibold uppercase tracking-[4px] text-yellow-500">
-              Service Details
-            </span>
-
-            <h2 className="mt-4 text-4xl font-black text-[#123A6D] sm:text-5xl">
-              How We Can Help
-            </h2>
-
-            <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-600">
-              Explore our services in more detail and understand how
-              New Way Consultancy & Placement can support your goals.
-            </p>
+              <path
+                d="M0 125 C170 195 290 35 470 75 C650 115 730 205 900 120 C1030 55 1110 60 1200 115"
+                fill="none"
+                stroke="rgba(255,255,255,0.25)"
+                strokeWidth="8"
+              />
+            </svg>
           </div>
 
-          <div className="space-y-10">
-            {serviceDetails.map((service, index) => (
-              <motion.article
-                key={service.id}
-                id={service.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.15 }}
-                transition={{ duration: 0.6 }}
-                className="scroll-mt-28 overflow-hidden rounded-[32px] border border-slate-200 bg-slate-50 shadow-lg"
-              >
-                <div className="grid lg:grid-cols-[0.9fr_1.1fr]">
+          {/* Content area */}
+          <div className="relative px-6 pb-8 pt-8 sm:px-10 sm:pb-10">
+            <div className="mb-8">
+              <p className="mb-3 text-xs font-bold uppercase tracking-[0.25em] text-yellow-400 sm:text-sm">
+                Educational Guidance
+              </p>
 
-                  {/* LEFT */}
-                  <div className="bg-[#123A6D] p-8 sm:p-10 lg:p-12">
-                    <span className="text-sm font-bold uppercase tracking-[3px] text-yellow-400">
-                      Service {String(index + 1).padStart(2, "0")}
-                    </span>
+              <h3 className="text-3xl font-black text-white sm:text-4xl">
+                Find the right direction.
+              </h3>
 
-                    <h3 className="mt-5 text-3xl font-black leading-tight text-white sm:text-4xl">
-                      {service.title}
-                    </h3>
+              <p className="mt-4 max-w-2xl text-base leading-7 text-blue-100 sm:text-lg sm:leading-8">
+                Support for education, admissions, career planning and
+                meaningful opportunities that are aligned with your goals.
+              </p>
+            </div>
 
-                    <p className="mt-5 text-lg font-medium leading-8 text-blue-100">
-                      {service.subtitle}
-                    </p>
-                  </div>
+            {/* Service indicators */}
+            <div className="mb-8 flex items-center gap-3">
+              <span className="h-3 w-3 rounded-full bg-blue-300/50" />
+              <span className="h-3 w-12 rounded-full bg-yellow-400" />
+              <span className="h-3 w-3 rounded-full bg-blue-300/50" />
+            </div>
 
-                  {/* RIGHT */}
-                  <div className="p-8 sm:p-10 lg:p-12">
-                    <p className="text-lg leading-8 text-slate-600">
-                      {service.description}
-                    </p>
+            {/* Service list */}
+            <div className="divide-y divide-white/10">
+              {services.map((service, index) => {
+                const Icon = service.icon;
 
-                    <div className="mt-8 grid gap-4 sm:grid-cols-2">
-                      {service.points.map((point) => (
-                        <div
-                          key={point}
-                          className="flex items-start gap-3"
-                        >
-                          <CheckCircle2
-                            size={20}
-                            className="mt-1 shrink-0 text-yellow-500"
-                          />
-
-                          <span className="font-medium leading-7 text-[#123A6D]">
-                            {point}
-                          </span>
-                        </div>
-                      ))}
+                return (
+                  <motion.div
+                    key={service.id}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{
+                      duration: 0.5,
+                      delay: index * 0.08,
+                    }}
+                    className="group flex items-center gap-4 py-6 sm:gap-6 sm:py-7"
+                  >
+                    {/* Icon */}
+                    <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-white/20 bg-white/5 transition-all duration-300 group-hover:border-yellow-400/50 group-hover:bg-yellow-400/10 sm:h-20 sm:w-20">
+                      <Icon
+                        size={30}
+                        strokeWidth={1.8}
+                        className="text-blue-100 transition-colors duration-300 group-hover:text-yellow-400 sm:h-9 sm:w-9"
+                      />
                     </div>
 
-                    <a
-                      href="#services"
-                      className="mt-9 inline-flex items-center gap-2 font-semibold text-[#123A6D] transition-colors hover:text-yellow-600"
-                    >
-                      Back to Services
+                    {/* Text */}
+                    <div className="min-w-0 flex-1">
+                      <h4 className="text-xl font-bold text-white sm:text-2xl">
+                        {service.title}
+                      </h4>
 
-                      <ArrowRight
-                        size={18}
-                        className="rotate-[-90deg]"
+                      <p className="mt-1 text-sm leading-6 text-blue-100 sm:text-base">
+                        {service.description}
+                      </p>
+                    </div>
+
+                    {/* Check */}
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-yellow-400 sm:h-11 sm:w-11">
+                      <CheckCircle2
+                        size={24}
+                        strokeWidth={2.5}
+                        className="text-[#123A6D]"
                       />
-                    </a>
-                  </div>
-                </div>
-              </motion.article>
-            ))}
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
           </div>
-        </div>
 
+          {/* Bottom CTA */}
+          <div className="border-t border-white/10 bg-[#0B315F]/70 px-6 py-6 sm:px-10">
+            <div className="flex flex-col items-start justify-between gap-5 sm:flex-row sm:items-center">
+              <div>
+                <p className="text-lg font-bold text-white">
+                  Not sure which path is right for you?
+                </p>
+
+                <p className="mt-1 text-sm text-blue-200">
+                  Talk to our team and get personalised guidance.
+                </p>
+              </div>
+
+              <a
+                href="#contact"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-yellow-400 px-6 py-3.5 font-bold text-[#123A6D] transition-all duration-300 hover:bg-yellow-300 hover:shadow-lg sm:w-auto"
+              >
+                Talk to Us
+                <ArrowRight size={20} />
+              </a>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Bottom service cards */}
+        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
+          {[
+            {
+              number: "500+",
+              label: "Career Opportunities",
+            },
+            {
+              number: "5000+",
+              label: "Candidates Guided",
+            },
+            {
+              number: "17+",
+              label: "Years Experience",
+            },
+          ].map((item, index) => (
+            <motion.div
+              key={item.label}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.5,
+                delay: index * 0.1,
+              }}
+              className="rounded-2xl border border-white/15 bg-white/5 p-6 backdrop-blur-sm"
+            >
+              <p className="text-3xl font-black text-white">
+                {item.number}
+              </p>
+
+              <p className="mt-2 text-sm font-medium text-blue-100">
+                {item.label}
+              </p>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
-    
-    </>
   );
 }
