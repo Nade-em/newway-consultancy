@@ -8,27 +8,32 @@ export const siteConfig = {
   },
 
   contact: {
+    // WhatsApp
     whatsapp: "7005439078",
     whatsappUrl: "https://wa.me/917005439078",
 
+    // Email
     email: "newwayconsultancy2008@gmail.com",
     emailUrl: "mailto:newwayconsultancy2008@gmail.com",
 
+    // Office Address
     address: {
       line1: "Babupura, B.O.S.E.M. Leirak",
       line2: "Imphal West",
       line3: "Manipur – 795001, India",
     },
 
-    mapsUrl:
-      "https://maps.app.goo.gl/4kjJrhRSPEdmpBDo9?g_st=aw",
+    // EXACT GOOGLE MAPS LOCATION
+    mapsUrl: "https://maps.app.goo.gl/4kjJrhRSPEdmpBDo9?g_st=aw",
 
+    // Contact Numbers
     phone: {
       director: "9402938695",
       assistantDirector: "936601837",
       marketingManager: "9362002944",
     },
 
+    // Office Hours
     officeHours: {
       weekdays: "Monday – Saturday",
       hours: "9:00 AM – 6:00 PM",
@@ -36,6 +41,7 @@ export const siteConfig = {
     },
   },
 
+  // Team
   team: [
     {
       name: "M.M Rahaman",
@@ -43,12 +49,14 @@ export const siteConfig = {
       phone: "9402938695",
       href: "tel:+919402938695",
     },
+
     {
       name: "Abdullah",
       role: "Assistant Director",
       phone: "936601837",
       href: "tel:+91936601837",
     },
+
     {
       name: "Mustafin",
       role: "Marketing Manager",
@@ -57,13 +65,27 @@ export const siteConfig = {
     },
   ],
 
+  // Navigation
   navigation: [
-    { label: "Home", href: "#home" },
-    { label: "About", href: "#about" },
-    { label: "Services", href: "#services" },
-    { label: "Contact", href: "#contact" },
+    {
+      label: "Home",
+      href: "#home",
+    },
+    {
+      label: "About",
+      href: "#about",
+    },
+    {
+      label: "Services",
+      href: "#services",
+    },
+    {
+      label: "Contact",
+      href: "#contact",
+    },
   ],
 
+  // Services
   services: [
     "Recruitment Services",
     "HR Consultancy",
@@ -72,6 +94,7 @@ export const siteConfig = {
     "Placement Assistance",
   ],
 
+  // Social Media
   social: {
     facebook: "",
     instagram: "",

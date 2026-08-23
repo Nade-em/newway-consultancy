@@ -28,7 +28,7 @@ export default function Contact() {
     .filter(Boolean)
     .join(", ");
 
-  const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+  const googleMapsUrl = `https://maps.app.goo.gl/4kjJrhRSPEdmpBDo9?g_st=aw${encodeURIComponent(
     officeAddress
   )}`;
 
