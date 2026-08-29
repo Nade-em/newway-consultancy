@@ -5,31 +5,49 @@ import { motion, AnimatePresence } from "framer-motion";
 import logo from "../../assets/images/logo.png";
 
 const navItems = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Our Team", href: "#team" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", id: "home" },
+  { label: "About", id: "about" },
+  { label: "Services", id: "services" },
+  { label: "Our Team", id: "team" },
+  { label: "Contact", id: "contact" },
 ];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const closeMenu = () => setIsOpen(false);
+  const scrollToSection = (id: string) => {
+    setIsOpen(false);
+
+    setTimeout(() => {
+      const element = document.getElementById(id);
+
+      if (!element) return;
+
+      const navbarOffset = 110;
+
+      const elementTop =
+        element.getBoundingClientRect().top + window.scrollY;
+
+      window.scrollTo({
+        top: elementTop - navbarOffset,
+        behavior: "smooth",
+      });
+    }, 50);
+  };
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-[100]">
+    <header className="fixed left-0 right-0 top-0 z-[9999]">
       <nav className="mx-auto mt-4 max-w-7xl px-4 sm:px-6">
         <div className="rounded-2xl border border-white/20 bg-white/95 px-4 py-3 shadow-lg backdrop-blur-xl sm:px-5">
 
-          {/* MAIN NAVBAR */}
-          <div className="flex min-h-[64px] items-center justify-between">
+          {/* NAVBAR TOP */}
+          <div className="flex items-center justify-between">
 
-            {/* LOGO + COMPANY NAME */}
-            <a
-              href="#home"
-              onClick={closeMenu}
-              className="flex min-w-0 items-center gap-2 sm:gap-3"
+            {/* LOGO */}
+            <button
+              type="button"
+              onClick={() => scrollToSection("home")}
+              className="flex min-w-0 items-center gap-2 text-left sm:gap-3"
             >
               <img
                 src={logo}
@@ -37,10 +55,8 @@ export default function Navbar() {
                 className="h-11 w-auto shrink-0 object-contain sm:h-12"
               />
 
-              {/* IMPORTANT:
-                  Company name is NOT hidden on mobile */}
               <div className="min-w-0 leading-tight">
-                <p className="whitespace-nowrap text-[12px] font-black text-[#123A6D] sm:text-base">
+                <p className="truncate text-sm font-black text-[#123A6D] sm:text-base">
                   New Way Consultancy
                 </p>
 
@@ -48,24 +64,25 @@ export default function Navbar() {
                   &amp; Placement
                 </p>
               </div>
-            </a>
+            </button>
 
-            {/* DESKTOP NAVIGATION */}
+            {/* DESKTOP MENU */}
             <div className="hidden items-center gap-8 md:flex">
               {navItems.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => scrollToSection(item.id)}
                   className="group relative text-sm font-semibold text-slate-600 transition-colors duration-200 hover:text-[#123A6D]"
                 >
                   {item.label}
 
                   <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-yellow-400 transition-all duration-300 group-hover:w-full" />
-                </a>
+                </button>
               ))}
             </div>
 
-            {/* MOBILE MENU BUTTON */}
+            {/* MOBILE BUTTON */}
             <button
               type="button"
               onClick={() => setIsOpen((open) => !open)}
@@ -73,7 +90,11 @@ export default function Navbar() {
               aria-expanded={isOpen}
               className="ml-2 shrink-0 rounded-xl p-2 text-[#123A6D] transition hover:bg-slate-100 md:hidden"
             >
-              {isOpen ? <X size={26} /> : <Menu size={26} />}
+              {isOpen ? (
+                <X size={28} strokeWidth={2.5} />
+              ) : (
+                <Menu size={28} strokeWidth={2.5} />
+              )}
             </button>
           </div>
 
@@ -81,23 +102,48 @@ export default function Navbar() {
           <AnimatePresence>
             {isOpen && (
               <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.25 }}
+                initial={{
+                  opacity: 0,
+                  height: 0,
+                }}
+                animate={{
+                  opacity: 1,
+                  height: "auto",
+                }}
+                exit={{
+                  opacity: 0,
+                  height: 0,
+                }}
+                transition={{
+                  duration: 0.25,
+                  ease: "easeInOut",
+                }}
                 className="overflow-hidden md:hidden"
               >
-                <div className="border-t border-slate-100 pb-2 pt-4">
-                  {navItems.map((item) => (
-                    <a
-                      key={item.href}
-                      href={item.href}
-                      onClick={closeMenu}
-                      className="block rounded-xl px-4 py-3 font-semibold text-slate-600 transition hover:bg-slate-50 hover:text-[#123A6D]"
+                <div className="mt-3 border-t border-slate-200 pt-3">
+
+                  {navItems.map((item, index) => (
+                    <motion.button
+                      key={item.id}
+                      type="button"
+                      initial={{
+                        opacity: 0,
+                        x: -10,
+                      }}
+                      animate={{
+                        opacity: 1,
+                        x: 0,
+                      }}
+                      transition={{
+                        delay: index * 0.04,
+                      }}
+                      onClick={() => scrollToSection(item.id)}
+                      className="block w-full rounded-xl px-4 py-4 text-left text-base font-semibold text-slate-600 transition-all duration-200 hover:bg-slate-50 hover:text-[#123A6D] active:bg-slate-100"
                     >
                       {item.label}
-                    </a>
+                    </motion.button>
                   ))}
+
                 </div>
               </motion.div>
             )}
