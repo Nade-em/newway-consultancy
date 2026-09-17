@@ -1,16 +1,16 @@
-
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
   BookOpen,
+  BriefcaseBusiness,
   GraduationCap,
   Globe2,
   Stethoscope,
   Phone,
+  Users,
   CheckCircle2,
 } from "lucide-react";
-
-import admissionsPoster from "../../assets/images/education-admissions-2026-27.jpeg";
 
 const programs = [
   {
@@ -84,6 +84,30 @@ const programs = [
   },
 ];
 
+const guidanceSlides = [
+  {
+    title: "Career Guidance",
+    heading: "Discover Your Direction.",
+    description:
+      "Personalized career guidance helping individuals understand their options, discover the right path, and make confident career decisions.",
+    icon: Users,
+  },
+  {
+    title: "Educational Guidance",
+    heading: "Choose Your Path.",
+    description:
+      "Support for educational choices, courses, admissions, and learning opportunities aligned with your goals.",
+    icon: BriefcaseBusiness,
+  },
+  {
+    title: "Placement Assistance",
+    heading: "Move Toward Opportunity.",
+    description:
+      "Support in discovering suitable opportunities and navigating the journey from preparation to placement.",
+    icon: GraduationCap,
+  },
+];
+
 const guidancePoints = [
   "MBBS admission guidance in India and abroad",
   "NEET-related guidance and admission support",
@@ -94,12 +118,24 @@ const guidancePoints = [
 ];
 
 export default function EducationPrograms() {
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveSlide((current) => (current + 1) % guidanceSlides.length);
+    }, 4000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const ActiveIcon = guidanceSlides[activeSlide].icon;
+
   return (
     <section
       id="education-programs"
       className="relative overflow-hidden bg-slate-50 py-24"
     >
-      {/* Background */}
+      {/* Background Grid */}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.035]"
         style={{
@@ -113,7 +149,9 @@ export default function EducationPrograms() {
 
       <div className="relative mx-auto max-w-7xl px-6 sm:px-8">
 
-        {/* HEADER */}
+        {/* =========================================================
+            SECTION HEADER
+        ========================================================= */}
         <motion.div
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -138,33 +176,226 @@ export default function EducationPrograms() {
           </p>
         </motion.div>
 
-        {/* FEATURE AREA */}
-        <div className="mt-16 grid items-center gap-12 lg:grid-cols-[0.85fr_1.15fr]">
+        {/* =========================================================
+            MOVED GUIDANCE / PLACEMENT PANEL
+        ========================================================= */}
+        <motion.div
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mx-auto mt-16 max-w-6xl"
+        >
+          <div className="relative overflow-hidden rounded-[32px] border border-[#123A6D]/20 bg-[#123A6D] shadow-2xl">
 
-          {/* POSTER */}
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="mx-auto w-full max-w-lg"
-          >
-            <div className="overflow-hidden rounded-[28px] border border-slate-200 bg-white p-3 shadow-2xl">
-              <img
-                src={admissionsPoster}
-                alt="New Way Consultancy & Placement educational admissions programmes 2026-27"
-                className="h-auto w-full rounded-[20px]"
-              />
+            {/* Decorative dots */}
+            <div className="pointer-events-none absolute right-8 top-10 grid grid-cols-4 gap-4 opacity-25">
+              {Array.from({ length: 16 }).map((_, index) => (
+                <span
+                  key={index}
+                  className="h-1.5 w-1.5 rounded-full bg-blue-200"
+                />
+              ))}
             </div>
-          </motion.div>
 
-          {/* CONTENT */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-          >
+            {/* Decorative circle */}
+            <div className="pointer-events-none absolute -right-20 -top-20 h-48 w-48 rounded-full border border-yellow-400/30" />
+
+            <div className="relative z-10 grid md:grid-cols-[1fr_1.05fr]">
+
+              {/* LEFT CONTENT */}
+              <div className="relative flex min-h-[460px] flex-col justify-between border-b border-white/10 p-8 md:border-b-0 md:border-r md:p-10">
+
+                <motion.div
+                  key={activeSlide}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.45 }}
+                >
+                  <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-yellow-400">
+                    <ActiveIcon
+                      size={28}
+                      className="text-[#123A6D]"
+                    />
+                  </div>
+
+                  <p className="text-sm font-semibold uppercase tracking-[3px] text-yellow-400">
+                    {guidanceSlides[activeSlide].title}
+                  </p>
+
+                  <h3 className="mt-4 text-3xl font-bold leading-tight text-white sm:text-4xl">
+                    {guidanceSlides[activeSlide].heading}
+                  </h3>
+
+                  <div className="mt-7 h-1 w-12 rounded-full bg-yellow-400" />
+
+                  <p className="mt-8 max-w-sm text-base leading-7 text-blue-100 sm:text-lg">
+                    {guidanceSlides[activeSlide].description}
+                  </p>
+                </motion.div>
+
+                {/* Slide Indicators */}
+                <div className="relative z-20 mt-10 flex gap-3">
+                  {guidanceSlides.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setActiveSlide(index)}
+                      aria-label={`Show guidance slide ${index + 1}`}
+                      className={`h-3 rounded-full transition-all duration-300 ${
+                        activeSlide === index
+                          ? "w-8 bg-yellow-400"
+                          : "w-3 bg-white/40 hover:bg-white/70"
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* RIGHT SERVICES */}
+              <div className="relative z-10 flex flex-col justify-center px-7 py-8 sm:px-9">
+
+                {/* Career Guidance */}
+                <div
+                  className={`flex items-center gap-4 border-b border-white/10 py-6 transition-all duration-500 ${
+                    activeSlide === 0
+                      ? "translate-x-1 opacity-100"
+                      : "opacity-65"
+                  }`}
+                >
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-white/30 bg-white/5">
+                    <Users
+                      size={27}
+                      className="text-white"
+                    />
+                  </div>
+
+                  <div className="min-w-0 flex-1">
+                    <p className="text-lg font-semibold text-white sm:text-xl">
+                      Career
+                    </p>
+                    <p className="text-lg font-semibold text-white sm:text-xl">
+                      Guidance
+                    </p>
+                  </div>
+
+                  <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-yellow-400">
+                    <span className="text-sm font-black text-[#123A6D]">
+                      ✓
+                    </span>
+                  </div>
+                </div>
+
+                {/* Career Development */}
+                <div
+                  className={`flex items-center gap-4 border-b border-white/10 py-6 transition-all duration-500 ${
+                    activeSlide === 1
+                      ? "translate-x-1 opacity-100"
+                      : "opacity-65"
+                  }`}
+                >
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-white/30 bg-white/5">
+                    <BriefcaseBusiness
+                      size={27}
+                      className="text-white"
+                    />
+                  </div>
+
+                  <div className="min-w-0 flex-1">
+                    <p className="text-lg font-semibold text-white sm:text-xl">
+                      Career
+                    </p>
+                    <p className="text-lg font-semibold text-white sm:text-xl">
+                      Development
+                    </p>
+                  </div>
+
+                  <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-yellow-400">
+                    <span className="text-sm font-black text-[#123A6D]">
+                      ✓
+                    </span>
+                  </div>
+                </div>
+
+                {/* Educational Guidance */}
+                <div
+                  className={`flex items-center gap-4 border-b border-white/10 py-6 transition-all duration-500 ${
+                    activeSlide === 2
+                      ? "translate-x-1 opacity-100"
+                      : "opacity-65"
+                  }`}
+                >
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-white/30 bg-white/5">
+                    <GraduationCap
+                      size={27}
+                      className="text-white"
+                    />
+                  </div>
+
+                  <div className="min-w-0 flex-1">
+                    <p className="text-lg font-semibold text-white sm:text-xl">
+                      Educational
+                    </p>
+                    <p className="text-lg font-semibold text-white sm:text-xl">
+                      Guidance
+                    </p>
+                  </div>
+
+                  <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-yellow-400">
+                    <span className="text-sm font-black text-[#123A6D]">
+                      ✓
+                    </span>
+                  </div>
+                </div>
+
+                {/* Placement Assistance */}
+                <div
+                  className={`mt-2 flex items-center gap-4 rounded-2xl border border-yellow-400/20 bg-white/[0.04] px-4 py-5 transition-all duration-500 ${
+                    activeSlide === 2
+                      ? "opacity-100"
+                      : "opacity-80"
+                  }`}
+                >
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-yellow-400">
+                    <GraduationCap
+                      size={24}
+                      className="text-[#123A6D]"
+                    />
+                  </div>
+
+                  <div className="min-w-0 flex-1">
+                    <p className="text-base font-bold text-white sm:text-lg">
+                      Placement Assistance
+                    </p>
+                    <p className="mt-1 text-sm text-blue-100">
+                      Bridging Talent with Opportunities
+                    </p>
+                  </div>
+
+                  <div className="hidden h-10 w-10 shrink-0 items-center justify-center rounded-full bg-yellow-400 sm:flex">
+                    <ArrowRight
+                      size={20}
+                      className="text-[#123A6D]"
+                    />
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* =========================================================
+            EDUCATIONAL GUIDANCE CONTENT
+        ========================================================= */}
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mx-auto mt-16 max-w-5xl"
+        >
+          <div className="rounded-[28px] border border-slate-200 bg-white p-7 shadow-lg sm:p-10">
+
             <div className="flex items-center gap-3">
               <div className="rounded-2xl bg-yellow-100 p-3">
                 <GraduationCap
@@ -174,7 +405,7 @@ export default function EducationPrograms() {
               </div>
 
               <span className="font-bold uppercase tracking-[2px] text-[#123A6D]">
-                Admissions 2026–27
+                Educational Guidance
               </span>
             </div>
 
@@ -192,7 +423,7 @@ export default function EducationPrograms() {
             </p>
 
             {/* Guidance Points */}
-            <div className="mt-8 grid gap-4">
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
               {guidancePoints.map((point) => (
                 <div
                   key={point}
@@ -211,9 +442,9 @@ export default function EducationPrograms() {
             </div>
 
             {/* Highlight Cards */}
-            <div className="mt-9 grid gap-4 sm:grid-cols-3">
+            <div className="mt-9 grid gap-4 md:grid-cols-3">
 
-              <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
                 <Stethoscope
                   size={23}
                   className="text-[#123A6D]"
@@ -228,7 +459,7 @@ export default function EducationPrograms() {
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
                 <Globe2
                   size={23}
                   className="text-[#123A6D]"
@@ -243,7 +474,7 @@ export default function EducationPrograms() {
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
                 <BookOpen
                   size={23}
                   className="text-[#123A6D]"
@@ -272,10 +503,12 @@ export default function EducationPrograms() {
                 className="transition-transform duration-300 group-hover:translate-x-1"
               />
             </a>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
 
-        {/* PROGRAMMES */}
+        {/* =========================================================
+            PROGRAMMES
+        ========================================================= */}
         <div className="mt-24">
 
           <div className="text-center">
@@ -332,7 +565,9 @@ export default function EducationPrograms() {
           </div>
         </div>
 
-        {/* PRE-BOOKING CTA */}
+        {/* =========================================================
+            PRE-BOOKING CTA
+        ========================================================= */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
