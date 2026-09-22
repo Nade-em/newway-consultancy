@@ -80,18 +80,29 @@ export default function Navbar() {
   return (
     <header className="fixed left-0 right-0 top-0 z-50 px-4 pt-4 sm:px-6">
       <nav className="mx-auto flex max-w-7xl items-center justify-between rounded-2xl border border-slate-200 bg-white/95 px-4 py-3 shadow-lg backdrop-blur-md sm:px-6">
-        {/* LOGO */}
+        {/* BRAND / LOGO */}
         <a
           href="#home"
           onClick={(event) => handleNavigation(event, "#home")}
-          className="flex shrink-0 items-center"
-          aria-label="New Way Consultancy & Placement Home"
+          className="flex min-w-0 shrink-0 items-center gap-3"
+          aria-label="New Way Consultancy & Placements Home"
         >
           <img
             src={logo}
-            alt="New Way Consultancy & Placement"
+            alt="New Way Consultancy & Placements"
             className="h-12 w-auto object-contain sm:h-14"
           />
+
+          {/* Desktop / Tablet Nameplate */}
+          <div className="hidden min-[520px]:block">
+            <div className="whitespace-nowrap text-[15px] font-extrabold leading-tight text-[#123A6D] sm:text-base">
+              New Way Consultancy & Placements
+            </div>
+
+            <div className="mt-1 text-[9px] font-semibold uppercase tracking-[0.16em] text-yellow-500 sm:text-[10px]">
+              Your Ambition. Our Direction.
+            </div>
+          </div>
         </a>
 
         {/* DESKTOP NAVIGATION */}
@@ -115,7 +126,6 @@ export default function Navbar() {
               >
                 {item.label}
 
-                {/* Active underline */}
                 {isActive && (
                   <motion.span
                     layoutId="navbar-active"
@@ -138,7 +148,7 @@ export default function Navbar() {
           onClick={() => setIsOpen((current) => !current)}
           aria-label={isOpen ? "Close menu" : "Open menu"}
           aria-expanded={isOpen}
-          className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white text-[#123A6D] transition hover:bg-slate-50 lg:hidden"
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-white text-[#123A6D] transition hover:bg-slate-50 lg:hidden"
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
