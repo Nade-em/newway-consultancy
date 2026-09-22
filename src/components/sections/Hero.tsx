@@ -15,6 +15,8 @@ import ad1 from "../../assets/images/advertisements/ad1.jpg";
 import ad2 from "../../assets/images/advertisements/ad2.jpg";
 import ad3 from "../../assets/images/advertisements/ad3.jpg";
 import ad4 from "../../assets/images/advertisements/ad4.jpg";
+import ad6 from "../../assets/images/advertisements/ad6.jpg";
+import ad7 from "../../assets/images/advertisements/ad7.jpg";
 import ad5 from "../../assets/images/education-admissions-2026-27.jpg";
 
 const advertisements = [
@@ -41,6 +43,17 @@ const advertisements = [
     image: ad4,
     title: "UAE & Saudi Arabia",
     subtitle: "Teaching Opportunities",
+  },
+  {
+    id: 6,
+    image: ad6,
+    title: "Nepal",
+    subtitle: "MBBS Admissions 2026–27",
+  },{
+    id: 7,
+    image: ad7,
+    title: "India and Abroad",
+    subtitle: "Education Admissions 2026–27",
   },
   {
     id: 5,

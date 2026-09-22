@@ -29,7 +29,7 @@ export const siteConfig = {
     // Contact Numbers
     phone: {
       director: "9402938695",
-      assistantDirector: "936601837",
+      assistantDirector: "9366018370",
       marketingManager: "9362002944",
     },
 
@@ -53,7 +53,7 @@ export const siteConfig = {
     {
       name: "Abdullah",
       role: "Assistant Director",
-      phone: "936601837",
+      phone: "9366018370",
       href: "tel:+91936601837",
     },
 
@@ -96,8 +96,8 @@ export const siteConfig = {
 
   // Social Media
   social: {
-    facebook: "",
-    instagram: "",
+    facebook: "https://www.facebook.com/share/1QK3DFkdjk/",
+    instagram: "https://www.instagram.com/newwayconsultancyplace?stkn=amk5MHVpc3owMm04",
     linkedin: "",
     whatsapp: "https://wa.me/917005439078",
   },

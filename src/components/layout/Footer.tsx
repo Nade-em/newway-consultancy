@@ -5,6 +5,12 @@ import {
   Phone,
 } from "lucide-react";
 
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaLinkedinIn,
+} from "react-icons/fa";
+
 import logo from "../../assets/images/logo.png";
 import { siteConfig } from "../../config/siteConfig";
 
@@ -43,45 +49,52 @@ export default function Footer() {
             </h2>
 
             <p className="mt-4 max-w-sm leading-7 text-slate-300">
-              Bridging ambition with the right opportunities through guidance and placement.
+              Bridging ambition with the right opportunities through guidance
+              and placement.
             </p>
 
+            {/* Social Media */}
             <div className="mt-6 flex items-center gap-3">
+              {/* Facebook */}
               <a
                 href={social.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
-                className="rounded-full bg-white/10 p-3 transition-all duration-300 hover:-translate-y-1 hover:bg-yellow-400 hover:text-[#123A6D]"
+                className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white transition-all duration-300 hover:-translate-y-1 hover:bg-yellow-400 hover:text-[#123A6D]"
               >
-                {/*Facebook size={18}*/}
+                <FaFacebookF size={18} />
               </a>
 
+              {/* Instagram */}
               <a
                 href={social.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="rounded-full bg-white/10 p-3 transition-all duration-300 hover:-translate-y-1 hover:bg-yellow-400 hover:text-[#123A6D]"
+                className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white transition-all duration-300 hover:-translate-y-1 hover:bg-yellow-400 hover:text-[#123A6D]"
               >
-                {/*Instagram size={18}*/}
+                <FaInstagram size={19} />
               </a>
 
+              {/* LinkedIn */}
               <a
                 href={social.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="rounded-full bg-white/10 p-3 transition-all duration-300 hover:-translate-y-1 hover:bg-yellow-400 hover:text-[#123A6D]"
+                className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white transition-all duration-300 hover:-translate-y-1 hover:bg-yellow-400 hover:text-[#123A6D]"
               >
+                <FaLinkedinIn size={18} />
               </a>
 
+              {/* WhatsApp */}
               <a
                 href={contact.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"
-                className="rounded-full bg-white/10 p-3 transition-all duration-300 hover:-translate-y-1 hover:bg-yellow-400 hover:text-[#123A6D]"
+                className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white transition-all duration-300 hover:-translate-y-1 hover:bg-yellow-400 hover:text-[#123A6D]"
               >
                 <MessageCircle size={18} />
               </a>
@@ -138,7 +151,7 @@ export default function Footer() {
                 href={contact.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-start gap-3 group"
+                className="group flex items-start gap-3"
               >
                 <MapPin
                   className="mt-1 shrink-0 text-yellow-400"
@@ -154,12 +167,12 @@ export default function Footer() {
                 </span>
               </a>
 
-              {/* WhatsApp */}
+              {/* WhatsApp / Phone */}
               <a
                 href={contact.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 group"
+                className="group flex items-center gap-3"
               >
                 <Phone
                   className="shrink-0 text-yellow-400"
@@ -174,7 +187,7 @@ export default function Footer() {
               {/* Email */}
               <a
                 href={contact.emailUrl}
-                className="flex items-start gap-3 group"
+                className="group flex items-start gap-3"
               >
                 <Mail
                   className="mt-1 shrink-0 text-yellow-400"

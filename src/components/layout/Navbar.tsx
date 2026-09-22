@@ -1,156 +1,201 @@
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import logo from "../../assets/images/logo.png";
 
 const navItems = [
-  { label: "Home", id: "home" },
-  { label: "About", id: "about" },
-  { label: "Services", id: "services" },
-  { label: "Our Team", id: "team" },
-  { label: "Contact", id: "contact" },
+  { label: "Home", href: "#home" },
+  { label: "About", href: "#about" },
+  { label: "Services", href: "#services" },
+  { label: "Education Network", href: "#education-network" },
+  { label: "Our Team", href: "#team" },
+  { label: "Contact", href: "#contact" },
 ];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
 
-  const scrollToSection = (id: string) => {
+  useEffect(() => {
+    const sections = navItems
+      .map((item) => document.querySelector(item.href))
+      .filter(Boolean) as Element[];
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleSections = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort(
+            (a, b) => b.intersectionRatio - a.intersectionRatio
+          );
+
+        if (visibleSections.length > 0) {
+          const id = visibleSections[0].target.id;
+          setActiveSection(id);
+        }
+      },
+      {
+        root: null,
+        rootMargin: "-20% 0px -60% 0px",
+        threshold: [0.1, 0.25, 0.5],
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, []);
+
+  const handleNavigation = (
+    event: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    event.preventDefault();
+
+    const target = document.querySelector(href);
+
+    if (!target) {
+      console.warn(`Navigation target not found: ${href}`);
+      return;
+    }
+
     setIsOpen(false);
 
-    setTimeout(() => {
-      const element = document.getElementById(id);
+    const navbarOffset = 110;
 
-      if (!element) return;
+    const targetPosition =
+      target.getBoundingClientRect().top +
+      window.scrollY -
+      navbarOffset;
 
-      const navbarOffset = 110;
+    window.history.pushState(null, "", href);
 
-      const elementTop =
-        element.getBoundingClientRect().top + window.scrollY;
-
-      window.scrollTo({
-        top: elementTop - navbarOffset,
-        behavior: "smooth",
-      });
-    }, 50);
+    window.scrollTo({
+      top: Math.max(0, targetPosition),
+      behavior: "smooth",
+    });
   };
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-[9999]">
-      <nav className="mx-auto mt-4 max-w-7xl px-4 sm:px-6">
-        <div className="rounded-2xl border border-white/20 bg-white/95 px-4 py-3 shadow-lg backdrop-blur-xl sm:px-5">
+    <header className="fixed left-0 right-0 top-0 z-50 px-4 pt-4 sm:px-6">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between rounded-2xl border border-slate-200 bg-white/95 px-4 py-3 shadow-lg backdrop-blur-md sm:px-6">
+        {/* LOGO */}
+        <a
+          href="#home"
+          onClick={(event) => handleNavigation(event, "#home")}
+          className="flex shrink-0 items-center"
+          aria-label="New Way Consultancy & Placement Home"
+        >
+          <img
+            src={logo}
+            alt="New Way Consultancy & Placement"
+            className="h-12 w-auto object-contain sm:h-14"
+          />
+        </a>
 
-          {/* NAVBAR TOP */}
-          <div className="flex items-center justify-between">
+        {/* DESKTOP NAVIGATION */}
+        <div className="hidden items-center gap-1 lg:flex">
+          {navItems.map((item) => {
+            const sectionId = item.href.replace("#", "");
+            const isActive = activeSection === sectionId;
 
-            {/* LOGO */}
-            <button
-              type="button"
-              onClick={() => scrollToSection("home")}
-              className="flex min-w-0 items-center gap-2 text-left sm:gap-3"
-            >
-              <img
-                src={logo}
-                alt="New Way Consultancy & Placement"
-                className="h-11 w-auto shrink-0 object-contain sm:h-12"
-              />
-
-              <div className="min-w-0 leading-tight">
-                <p className="truncate text-sm font-black text-[#123A6D] sm:text-base">
-                  New Way Consultancy
-                </p>
-
-                <p className="text-[10px] font-semibold text-[#123A6D] sm:text-xs">
-                  &amp; Placement
-                </p>
-              </div>
-            </button>
-
-            {/* DESKTOP MENU */}
-            <div className="hidden items-center gap-8 md:flex">
-              {navItems.map((item) => (
-                <button
-                  key={item.id}
-                  type="button"
-                  onClick={() => scrollToSection(item.id)}
-                  className="group relative text-sm font-semibold text-slate-600 transition-colors duration-200 hover:text-[#123A6D]"
-                >
-                  {item.label}
-
-                  <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-yellow-400 transition-all duration-300 group-hover:w-full" />
-                </button>
-              ))}
-            </div>
-
-            {/* MOBILE BUTTON */}
-            <button
-              type="button"
-              onClick={() => setIsOpen((open) => !open)}
-              aria-label={isOpen ? "Close menu" : "Open menu"}
-              aria-expanded={isOpen}
-              className="ml-2 shrink-0 rounded-xl p-2 text-[#123A6D] transition hover:bg-slate-100 md:hidden"
-            >
-              {isOpen ? (
-                <X size={28} strokeWidth={2.5} />
-              ) : (
-                <Menu size={28} strokeWidth={2.5} />
-              )}
-            </button>
-          </div>
-
-          {/* MOBILE MENU */}
-          <AnimatePresence>
-            {isOpen && (
-              <motion.div
-                initial={{
-                  opacity: 0,
-                  height: 0,
-                }}
-                animate={{
-                  opacity: 1,
-                  height: "auto",
-                }}
-                exit={{
-                  opacity: 0,
-                  height: 0,
-                }}
-                transition={{
-                  duration: 0.25,
-                  ease: "easeInOut",
-                }}
-                className="overflow-hidden md:hidden"
+            return (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={(event) =>
+                  handleNavigation(event, item.href)
+                }
+                className={`relative rounded-full px-4 py-3 text-sm font-semibold transition-all duration-300 ${
+                  isActive
+                    ? "text-[#123A6D]"
+                    : "text-slate-600 hover:bg-slate-50 hover:text-[#123A6D]"
+                }`}
               >
-                <div className="mt-3 border-t border-slate-200 pt-3">
+                {item.label}
 
-                  {navItems.map((item, index) => (
-                    <motion.button
-                      key={item.id}
-                      type="button"
-                      initial={{
-                        opacity: 0,
-                        x: -10,
-                      }}
-                      animate={{
-                        opacity: 1,
-                        x: 0,
-                      }}
-                      transition={{
-                        delay: index * 0.04,
-                      }}
-                      onClick={() => scrollToSection(item.id)}
-                      className="block w-full rounded-xl px-4 py-4 text-left text-base font-semibold text-slate-600 transition-all duration-200 hover:bg-slate-50 hover:text-[#123A6D] active:bg-slate-100"
-                    >
-                      {item.label}
-                    </motion.button>
-                  ))}
-
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
+                {/* Active underline */}
+                {isActive && (
+                  <motion.span
+                    layoutId="navbar-active"
+                    className="absolute bottom-1 left-4 right-4 h-0.5 rounded-full bg-yellow-400"
+                    transition={{
+                      type: "spring",
+                      stiffness: 500,
+                      damping: 35,
+                    }}
+                  />
+                )}
+              </a>
+            );
+          })}
         </div>
+
+        {/* MOBILE MENU BUTTON */}
+        <button
+          type="button"
+          onClick={() => setIsOpen((current) => !current)}
+          aria-label={isOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isOpen}
+          className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white text-[#123A6D] transition hover:bg-slate-50 lg:hidden"
+        >
+          {isOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
       </nav>
+
+      {/* MOBILE MENU */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: -10,
+              scale: 0.98,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+              scale: 1,
+            }}
+            exit={{
+              opacity: 0,
+              y: -10,
+              scale: 0.98,
+            }}
+            transition={{ duration: 0.2 }}
+            className="mx-auto mt-3 max-w-7xl overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl lg:hidden"
+          >
+            <div className="flex flex-col p-3">
+              {navItems.map((item) => {
+                const sectionId = item.href.replace("#", "");
+                const isActive = activeSection === sectionId;
+
+                return (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    onClick={(event) =>
+                      handleNavigation(event, item.href)
+                    }
+                    className={`flex items-center justify-between rounded-xl px-5 py-4 text-base font-semibold transition-all duration-200 ${
+                      isActive
+                        ? "bg-[#123A6D] text-white"
+                        : "text-[#123A6D] hover:bg-slate-50"
+                    }`}
+                  >
+                    <span>{item.label}</span>
+
+                    {isActive && (
+                      <span className="h-2 w-2 rounded-full bg-yellow-400" />
+                    )}
+                  </a>
+                );
+              })}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
